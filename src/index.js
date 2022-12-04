@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Canvas from "./canvas.js";
 import GameEngine from "./gameEngine.js";
 import Snake from "./snake.js";
