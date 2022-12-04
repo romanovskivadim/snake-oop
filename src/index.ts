@@ -1,10 +1,13 @@
-// @ts-nocheck
-import Canvas from "./canvas.js";
-import GameEngine from "./gameEngine.js";
-import Snake from "./snake.js";
-import Apple from "./apple.js";
+import Canvas, { CanvasInterface } from "./canvas";
+import GameEngine from "./gameEngine";
+import Snake, { SnakeInterface } from "./snake";
+import Apple, { AppleInterface } from "./apple";
 
 class Game {
+    canvas: CanvasInterface;
+    snake: SnakeInterface;
+    apple: AppleInterface;
+
     constructor(container) {
         this.canvas = new Canvas(container);
         this.snake = new Snake();
@@ -17,7 +20,7 @@ class Game {
     }
 
     draw() {
-        this.canvas.context.clearRect(0, 0, this.canvas.element.width, this.canvas.element.height);
+        (this.canvas.context as CanvasRect).clearRect(0, 0, this.canvas.element.width, this.canvas.element.height);
         this.snake.draw(this.canvas.context);
         this.apple.draw(this.canvas.context);
     }

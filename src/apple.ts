@@ -1,8 +1,24 @@
-import GameConfig from "./gameConfig.js";
-import { getRandomNumber } from "./helpers.js";
+import { CanvasInterface } from "canvas";
+import GameConfig, { ConfigInterface } from "./gameConfig";
+import { getRandomNumber } from "./helpers";
 
-export default class Apple {
-    constructor(canvas) {
+export interface AppleInterface {
+    x: number;
+    y: number;
+    canvas: CanvasInterface;
+    config: ConfigInterface;
+
+    draw: (context: CanvasRenderingContext2D | null) => void;
+    randomPosition: () => void;
+}
+
+export default class Apple implements AppleInterface {
+    x: number;
+    y: number;
+    canvas: CanvasInterface;
+    config: ConfigInterface;
+
+    constructor(canvas: CanvasInterface) {
         this.x = 0;
         this.y = 0;
         this.canvas = canvas;

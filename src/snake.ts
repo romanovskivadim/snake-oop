@@ -1,9 +1,37 @@
-import Config from "./gameConfig.js";
+import { AppleInterface } from "apple";
+import { CanvasInterface } from "canvas";
+import Config, { ConfigInterface } from "./gameConfig";
 
-export default class Snake {
-	
+export interface SnakeInterface {
+	config: ConfigInterface;
+	x: number;
+	y: number;
+	dx: number;
+	dy: number;
+	tails: Tail[];
+	maxTails: number;
+
+	update: (apple: AppleInterface, canvas: CanvasInterface) => void;
+	draw: (context: CanvasRenderingContext2D | null) => void;
+	death: () => void;
+	control: () => void;
+}
+
+type Tail = {
+	x: number;
+	y: number;
+};
+
+export default class Snake implements SnakeInterface {
+	config: ConfigInterface;
+	x: number;
+	y: number;
+	dx: number;
+	dy: number;
+	tails: Tail[];
+	maxTails: number;
+
 	constructor(){
-
 		this.config = new Config();
 		this.x = 160;
 		this.y = 160;
@@ -16,7 +44,7 @@ export default class Snake {
 
 	}
 
-	update( apple, canvas ) {
+	update(apple, canvas) {
 		this.x += this.dx;
 		this.y += this.dy;
 	

@@ -1,7 +1,11 @@
-import Config from "./gameConfig.js";
+import Config, { ConfigInterface } from "./gameConfig";
 
 export default class GameEngine {
-    constructor(update, draw) {
+    config: ConfigInterface;
+    update: () => void;
+    draw: () => void;
+
+    constructor(update: () => void, draw: () => void) {
         this.update = update;
         this.draw = draw;
         this.config = new Config();
